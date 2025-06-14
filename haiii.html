@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Minta Maaf</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff0f0;
+      color: maroon;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      width: 100%;
+      height: 100vh;
+    }
+    .active {
+      display: flex;
+    }
+    h1, h2, h3, h4 {
+      margin: 20px 0;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+    #angerLabel {
+      font-size: 20px;
+      margin-top: 20px;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 80%;
+      height: 15px;
+      background: #ffdede;
+      border-radius: 12px;
+      outline: none;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 30px;
+      height: 30px;
+      background: maroon;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    button {
+      background-color: #ffe5ec;
+      border: 2px solid maroon;
+      border-radius: 16px;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: maroon;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 10px;
+    }
+    button:hover {
+      background-color: #ffcce0;
+    }
+    #angerValue {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .fade-out {
+      animation: fadeOut 0.5s forwards;
+    }
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    img.media {
+      margin-top: 30px;
+      width: 200px;
+      border-radius: 16px;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="screen0" class="screen active">
+    <h1 class="fade-in">apapun hasilny nnti km screenshot kirim ke ak</h1>
+    <button onclick="nextScreen('screen0','screen1')">yh ok</button>
+  </div>  <div id="screen1" class="screen">
+    <h1>seberapa marahny km sm ak</h1>
+    <div id="angerLabel">seberapa marahny km sm ak</div>
+    <input type="range" id="angerRange" min="0" max="100" value="0" oninput="updateValue(this.value)">
+    <div id="angerValue">0%</div>
+    <div id="buttonArea">
+      <button onclick="goToNext()">ak semarah ini</button>
+    </div>
+  </div>  <div id="screen1_5" class="screen">
+    <h2 id="s15t1" class="fade-in">ak bkin hati km sesakit itu y</h2>
+    <div id="s15b1" class="button-group"></div>
+    <h2 id="s15t2" class="fade-in" style="display:none">kek mn cara ak bkin km g mrh lg dan maafin ak</h2>
+    <div id="s15b2" class="button-group" style="display:none"></div>
+    <h2 id="s15t3" class="fade-in" style="display:none">serius ak nyesel bgt maaf bgt bidadarikuu🥺</h2>
+    <div id="s15b3" class="button-group" style="display:none"></div>
+  </div>  <div id="screen2" class="screen">
+    <h1 id="s2h1">km semarah itu ya</h1>
+    <h2 id="s2h2">ak emang salah nn plss hari inii</h2>
+    <h3 id="s2h3">tolong maafin ak cintakuuu🙏🏻🙏🏻</h3>
+    <h4 id="s2h4">ak minta maaf cwo km menyesallll</h4>
+    <img id="s2img" class="media" src="maafff.webp" alt="Maaf">
+    <div id="finalButtons"></div>
+  </div>  <div id="screen3" class="screen">
+    <h1 class="fade-in">duhh maaf cintakuu🙏🏻🙏🏻🥹🥹 ak bnr bnr nyesel</h1>
+    <img class="media fade-in" src="maaf.webp" alt="Maaf Lagi">
+  </div>  <div id="screen4" class="screen">
+    <h1 class="fade-in">YEEYYYYYY ak dimaafiinnnnnn</h1>
+    <h2 class="fade-in">MAKASIIHHH CINTAKUUUUU😘😘</h2>
+    <img class="media fade-in" src="maaff.webp" alt="Happy">
+  </div>  <script>
+    let clickCount = 0;
+    const labelMessages = [
+      "duh km marah bgt ya",
+      "duh km marah bgt ya",
+      "kecilin dikit lg plss persentase marahny",
+      "kekny km marah bgt, sekali lgiii maaf syngkuu 🙏🏻🙏🏻"
+    ];
+
+    function updateValue(val) {
+      document.getElementById("angerValue").textContent = val + "%";
+    }
+
+    function goToNext() {
+      const label = document.getElementById("angerLabel");
+      label.classList.add("fade-out");
+      setTimeout(() => {
+        label.textContent = labelMessages[clickCount];
+        label.classList.remove("fade-out");
+        label.classList.add("fade-in");
+        setTimeout(() => label.classList.remove("fade-in"), 2000);
+      }, 500);
+
+      clickCount++;
+      if (clickCount === 3) {
+        const buttonArea = document.getElementById("buttonArea");
+        buttonArea.innerHTML = `
+          <div class="button-group">
+            <button onclick="goToScreen15()">dk glk</button>
+            <button onclick="goToScreen15()">iyoo synggkuu</button>
+          </div>`;
+      }
+    }
+
+    function goToScreen15() {
+      nextScreen('screen1','screen1_5');
+      setTimeout(() => {
+        document.getElementById("s15b1").innerHTML = `
+          <button onclick="showSecond15()">iyo</button>
+          <button onclick="showSecond15()">kw pikir?</button>
+          <button onclick="showSecond15()">dk</button>`;
+      }, 1000);
+    }
+
+    function showSecond15() {
+      document.getElementById("s15t2").style.display = "block";
+      document.getElementById("s15b2").style.display = "flex";
+      document.getElementById("s15b2").innerHTML = `
+        <button onclick="showThird15()">(ketik di wa)</button>
+        <button onclick="showThird15()">gmw</button>`;
+    }
+
+    function showThird15() {
+      document.getElementById("s15t3").style.display = "block";
+      document.getElementById("s15b3").style.display = "flex";
+      document.getElementById("s15b3").innerHTML = `
+        <button onclick="nextScreen('screen1_5','screen2')">gmw</button>
+        <button onclick="nextScreen('screen1_5','screen2')">gmw.</button>
+        <button onclick="nextScreen('screen1_5','screen2')">gmw!!!</button>`;
+    }
+
+    function revealText() {
+      const elements = ["s2h1", "s2h2", "s2h3", "s2h4", "s2img"];
+      elements.forEach((id, i) => {
+        setTimeout(() => {
+          document.getElementById(id).classList.add("fade-in");
+        }, i * 2000);
+      });
+
+      setTimeout(() => {
+        document.getElementById("finalButtons").innerHTML = `
+          <div class="button-group">
+            <button onclick="nextScreen('screen2','screen3')">km jht</button>
+            <button onclick="nextScreen('screen2','screen4')">yyy ak maafin deh</button>
+          </div>`;
+      }, 12000);
+    }
+
+    function nextScreen(from, to) {
+      const fromScreen = document.getElementById(from);
+      fromScreen.classList.add("fade-out");
+      setTimeout(() => {
+        fromScreen.classList.remove("active");
+        const toScreen = document.getElementById(to);
+        toScreen.classList.add("active");
+        if (to === "screen2") revealText();
+      }, 500);
+    }
+  </script></body>
+</html>
